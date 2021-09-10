@@ -1,0 +1,92 @@
+<html>
+<head>
+
+
+<script language="javaScript">
+
+function greeting()
+{
+	alert("Hello there") // "Hello there" is a parameter.
+
+}// end of greeting()
+
+function greeting1()
+{
+	// = is the assignment operator
+	// assignment stores what is on the right side into the element on the left.
+	var name = prompt("Please type your name here") // "Type your name" is a parameter.
+	alert("Greetings, "+name);
+	
+}// end of greeting1()
+
+function greeting2()
+{
+	var answer = confirm("Do you want to play a game?");
+	alert(answer);
+	// if (answer = true) = guessing()
+	
+}// end of greeting2()
+
+
+function guessing() 
+{
+	var userGuess = -1;
+	var numOfGuesses = 0;
+	var random = Math.random();
+	random = random * 10;
+	random = random + 1;
+	random = parseInt(random);
+	// alert(random);
+	
+	userGuess = prompt ("Guess a number between 1-10")
+	numOfGuesses = numOfGuesses + 1;
+	
+	while (userGuess !=random) //loop continues until answer is correct
+	{
+		numOfGuesses = numOfGuesses + 1;
+		if (userGuess < random) //guess is too low
+		{
+			alert("Your guess is too low :/ Try again!")
+		}
+		
+		else if (userGuess > random) // too high
+		{
+			alert ("Your guess is too high :/ Try again!")
+		}
+		
+		userGuess = prompt ("Make another guess")
+		
+	}
+	if (userGuess=random) //guess is correct
+		{
+		alert("Correct!! You guessed the right number. It took you " +numOfGuesses+ " tries.")
+		}
+}
+
+</script>
+</head>
+
+
+
+<body bgcolor="4F684F">
+<font color="white" face="Arial" size="4">
+
+<h1> First Javascript Page </h1>
+
+Click here to <a href="index.html"> to go back to the main website. </a><br/><br/>
+
+<hr/>
+<input type="button" value="Click me" onclick="greeting()"/>
+
+<hr/>
+<input type="button" value="Click to entrer a name" onclick="greeting1()"/>
+
+<hr/>
+<input type="button" value="Click here one last time :)" onclick="greeting2()"/>
+
+<hr/>
+<input type="button" value="Play my guessing game" onclick="guessing()"/>
+
+</font>
+</body>
+</html>
