@@ -1,0 +1,112 @@
+<html>
+<head>
+
+<script language="JavaScript">
+
+var counter = 0;
+
+var timer;
+
+var autoStart = false;
+
+
+// var clipLength = [ 4 , 5 , 4 , 9 , 5 , 5 , 9 ]
+
+var picList= 	["images/slides/slide0.jpg",
+				"images/slides/slide1.jpg",
+				"images/slides/slide2.jpg", 
+				"images/slides/slide3.jpg", 
+				"images/slides/slide4.jpg", 
+				"images/slides/slide5.jpg", 
+				"images/slides/slide6.jpg",]
+
+var clipList= 	["sounds/Friends.sound0.mp3",
+				"sounds/Friends.sound1.mp3", 
+				"sounds/Friends.sound2.mp3", 
+				"sounds/Friends.sound3.mp3", 
+				"sounds/Friends.sound4.mp3", 
+				"sounds/Friends.sound5.mp3",
+				"sounds/Friends.sound6.mp3"]
+
+function next()
+{
+	counter++;
+	
+	document.getElementById("display").src = picList[counter];
+	document.getElementById("player").src = clipList[counter];
+	
+	document.getElementById("player").play();
+	
+	increment();
+}
+
+function increment()
+{
+	if (counter == clipList.length - 1)			//counter is the last element
+		{
+			counter = 0;
+		}
+		
+	else
+		{
+			counter = counter++;
+		}
+}
+
+function run()
+{
+	if (autoStart==false) 
+	{
+		autoStart=true;
+		document.getElementById("runButton").value = "Pause"
+	}
+	
+	else 
+	{
+		autoStart=false;
+		document.getElementById("runButton").value = "Run Slideshow"
+	}
+	
+	autoRun();
+}
+
+function autoRun()
+{
+
+	if (autoStart==true)
+	{
+		next();
+		timer = setTimeout ("autoRun()",5500);
+	}
+	
+	else
+	{
+		clearTimeout(timer);
+	}
+}
+
+</script>
+</head>
+
+
+<body bgcolor="2E0E06">
+<center>
+<font color="white" face="Candara">
+
+<h1> F R I E N D S </h1>
+
+Click here to return <a href="index.html"> to my homepage </a>
+
+<br/><br/>
+<input type ="button" value="Next Picture" onclick="next()"/>
+<input type ="button" value="Run Slideshow" onclick="run()" id="runButton" />
+<br/><br/>
+
+<img src="images/slides/slide0.jpg" id="display"/>
+
+<audio id="player"></audio>
+
+</font>
+</center>
+</body>
+</html>
