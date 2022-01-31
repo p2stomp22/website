@@ -1,0 +1,135 @@
+<html>
+<head>
+<script language = JavaScript>
+
+ var score=0;
+ var counter=0;
+ 
+ var english = ["hello", "welcome", "good morning", "good evening", "bye"]
+ var dutch = ["hoi", "welkom", "goede morgen", "goede avond", "doei"]
+ var asked =[false, false, false, false, false]
+ var qAsked;
+ 
+function nextQ()
+{
+	var checked = document.getElementById("english").checked;
+	displayClue(checked);
+	
+	document.getElementById("answer").value="";
+	document.getElementById("image").style.visibility="hidden"; 
+}
+
+function displayClue(englishOrDutch)
+{
+	qAsked = getUnusedIndex();
+	if (englishOrDutch==true)
+	{
+	document.getElementById("clue").value = english[qAsked];
+	}
+	
+	else
+	{
+	document.getElementById("clue").value = dutch[qAsked];
+	}
+	
+}
+
+function getUnusedIndex()
+{
+	var rand = Math.random()*english.length;
+	rand = parseInt(rand);
+	
+	while (asked[rand] == true) //it has been asked before.
+	{
+		rand = Math.random()*english.length;
+		rand = parseInt(rand);
+	} // rand is a index that is false and has not been picked yet.
+
+	asked[rand] = true;
+	
+	return rand;
+}
+
+function nextA()
+{
+	var checked = document.getElementById("english").checked;
+	checkAnswer(checked);
+}
+
+function checkAnswer(dutchIsAnswers)
+{ 	
+	var answers;
+	if (dutchIsAnswers==true)
+	{
+		var answers = dutch;
+	}
+	else
+	{
+		var answers = english;
+	}
+	 
+	var inputAnswer=document.getElementById("answer").value
+	if (inputAnswer==answers[qAsked])
+	{
+		score=score+20
+		alert("Correct!! +20 points! Your current score is "+score+" press next to continue.");
+		document.getElementById("happySad").src="images/happydog.jfif";
+	}
+	
+	else
+	{
+		alert("Incorrect :/ No points for you... Your current score is "+score+" press next to continue.");
+		document.getElementById("happySad").src="images/saddog.jpg";
+	}
+	
+	document.getElementById("image").style.visibility="visible";
+
+	var midPoint = window.innerWidth
+	document.getElementById("image").style.left = ((midPoint/2)-158);
+	document.getElementById("image").style.visibility = "visible";
+	
+	if (counter < answers.length -1)
+	{
+		counter++;
+	}
+	else
+	{
+	alert("This is the end of the quiz, your final score is "+score+" out of 100. Great job!");
+
+	for(i=0; i<asked.length; i++)
+	{
+		asked[i] = false;
+	}
+	}
+}
+
+</script>
+</head>
+<body bgcolor="DEB48F">
+<font color="white" face="Arial">
+<center>
+<h1>Dutch Quiz</h1>
+
+<input type="radio" id="english" name="qType" onchange="restart()" checked>
+  <label for="english">English</label>
+<input type="radio" id="dutch" name="qType" on>
+  <label for="dutch">Dutch</label>
+
+<input type="button" value="Next" onclick="nextQ()"/>
+
+<br/><br/>
+<input type = "text" id="clue" readonly size=40>
+
+<br/><br/>
+<input type = "text" id="answer" onfocusout="nextA()" size=40>
+<br/><br/>
+<input type="button" value="Check Answer" />
+
+<div id="image" style="position:absolute; visibility:hidden">
+<img id="happySad" src="images/happydog.jfif" width="500"/> 
+</div>
+
+</center> 
+</font>
+</body>
+</html>
