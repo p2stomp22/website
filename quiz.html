@@ -1,0 +1,127 @@
+<html>
+<head>
+
+<script language="JavaScript">
+
+
+var questionList= 	["images/questions/jeopardy.jpg",
+				"images/questions/question1.jpg",
+				"images/questions/question2.jpg", 
+				"images/questions/question3.jpg", 
+				"images/questions/question4.jpg", 
+				"images/questions/question5.jpg"]
+				
+var correctAnswer= [true, 
+					false,
+					true,
+					false,
+					false,
+					true]
+					
+var answerExplanation= [" About 32% of all plastic packaging produced ends up in our oceans every year",
+						" Actually, only 9% of all plastic produced is recycled",
+						" This is sadly true. An estimated 1 million marine birds die each year due to the ingestion of plastics.",
+						" It is estimated that an average person consumes about 70,000 microplastics each year.",
+						" 1 MILLION plastic bottles are every MINUTE!",
+						" About 32% of all plastic packaging produced ends up in our oceans every year" ]
+
+counter=0
+ 
+function next()
+{
+	counter++;
+	
+	if (counter==0)
+	{
+		document.getElementById("div1").style.visibility ="visible";
+		document.getElementById("div2").style.visibility ="hidden";
+	}
+	
+	else
+	{
+		document.getElementById("div1").style.visibility ="hidden";
+		document.getElementById("div2").style.visibility ="visible";
+	}
+	
+	document.getElementById("display").src = questionList[counter];
+	
+	increment();
+}
+
+function increment()
+{
+	if (counter == questionList.length - 1)			//counter is the last element
+		{
+			counter = 0;
+		}
+		
+	else
+		{
+			counter = counter++;
+		}
+}
+
+
+function answer(buttonNumber)
+{
+	if (buttonNumber==1)// the user clicked the true button
+	{
+		if (true == correctAnswer[counter])
+		{
+			alert("Correct!" + answerExplanation[counter]);
+			next();
+		}
+
+		else
+		{
+			alert("Incorrect." + answerExplanation[counter]);
+			next();
+		}
+	}	
+	
+	else  //user clicked false button 
+	{
+		if (false == correctAnswer[counter])
+		{
+			alert("Correct!" + answerExplanation[counter]);
+			next();
+		}
+
+		else
+		{
+			alert("Incorrect." + answerExplanation[counter]);
+			next();
+		}
+	}
+}
+
+
+</script>
+</head>
+
+
+<body bgcolor="608BFF">
+<center>
+<font color="white" face="Candara" size="30">
+<br/>
+Plastic Polution Jeopardy 
+
+<br/>
+<div id="div1" style="position:absolute; top:200p; left:550; visibility:visible">
+<input type ="button" value="Click here to start the quiz" onclick="next()"/> 
+</div>
+<br/>
+<img src="images/questions/jeopardy.jpg" id="display"   width="800"/>
+
+<br/>
+
+<div id="div2" style="position:absolute; top:900p; left:600; visibility:hidden">
+<input type ="button" value="True" onclick="answer(1)" id="true"/>
+<input type ="button" value="False" onclick="answer(2)" id="false" />
+</div>
+<br/><br/>
+
+</font>
+</center>
+</body>
+</html>
