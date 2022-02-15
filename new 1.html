@@ -4,7 +4,8 @@
 <script language="JavaScript">
 
 
-var questionList= ["images/hike/1.jpg",
+var questionList= [ "images/hike/opening.jfif",
+				"images/hike/1.jpg",
 				"images/hike/2.jpg",
 				"images/hike/3.jpg"]
 
@@ -15,9 +16,9 @@ var hikes= [ 	["images/hike/DoudPeakViaSoberanesCanyonTrail.jpg", "sunny", "long
 				["images/hike/PinyonPeak.jpg", "foggy", "long", "challenge"],
 				["images/hike/VTERTCTL.jpg", "foggy", "long", "easy"],
 				["images/hike/InspirationPoint.jpg", "foggy", "short", "challenge"],
-				["images/hike/RumisienOverlook.jpg", "foggy", "short", "easy"]	]
+				["images/hike/RumsienOverlook.jpg", "foggy", "short", "easy"]	]
 
-counter=0
+counter=0;
  
 function next()
 {
@@ -42,9 +43,10 @@ function next()
 
 function increment()
 {
-	if (counter == questionList.length - 1)			//counter is the last element
+	if (counter == questionList.length-1)			//counter is the last element
 		{
 			counter = 0;
+			displayHike();
 		}
 		
 	else
@@ -53,40 +55,17 @@ function increment()
 		}
 }
 
-
-function answer(buttonNumber)
+function checkHike(buttonNumber)
 {
-	if (buttonNumber==1)// the user clicked the yes button
-	{
-		if (true == correctAnswer[counter])
-		{
-			
-			next();
-		}
 
-		else
-		{
-			
-			next();
-		}
-	}	
-	
-	else  //user clicked no button 
-	{
-		if (false == correctAnswer[counter])
-		{
-			
-			next();
-		}
 
-		else
-		{
-		
-			next();
-		}
-	}
+	next();
 }
 
+function displayHike()
+{
+	document.getElementById("display").src = hikes[0][0];
+}
 
 </script>
 </head>
@@ -98,18 +77,17 @@ function answer(buttonNumber)
 Hike Help 
 
 <br/>
-<div id="div1" style="position:absolute; top:200p; left:550; visibility:visible">
+<div id="div1" style="position:absolute; top:200p; left:575; visibility:visible">
 <input type ="button" value="Click here to start" onclick="next()"/> 
 </div>
-
 <br/>
+<img src="images/hike/opening.jfif" id="display"   width="700"/>
 
 <div id="div2" style="position:absolute; top:900p; left:600; visibility:hidden">
-<input type ="button" value="Yes!" onclick="answer(1)" id="true"/>
-<input type ="button" value="No" onclick="answer(2)" id="false" />
+<input type ="button" value="Yes!" onclick="checkHike(1)" id="true"/>
+<input type ="button" value="No" onclick="checkHike(2)" id="false" />
 </div>
 <br/><br/>
-
 </font>
 </center>
 </body>
