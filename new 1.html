@@ -24,17 +24,8 @@ function next()
 {
 	counter++;
 	
-	if (counter==0)
-	{
-		document.getElementById("div1").style.visibility ="visible";
-		document.getElementById("div2").style.visibility ="hidden";
-	}
-	
-	else
-	{
-		document.getElementById("div1").style.visibility ="hidden";
-		document.getElementById("div2").style.visibility ="visible";
-	}
+	document.getElementById("div1").style.visibility ="hidden";
+	document.getElementById("div2").style.visibility ="visible";
 	
 	document.getElementById("display").src = questionList[counter];
 	
@@ -43,7 +34,7 @@ function next()
 
 function increment()
 {
-	if (counter == questionList.length-1)			//counter is the last element
+	if (counter == questionList.length-1)				//counter is the last element
 		{
 			counter = 0;
 			displayHike();
@@ -51,20 +42,58 @@ function increment()
 		
 	else
 		{
-			counter = counter++;
+			counter = counter++; 
 		}
 }
 
 function checkHike(buttonNumber)
 {
-
-
-	next();
+	if (counter==1)
+	{
+		if (buttonNumber==1)							// the user clicked the true button -- yes it is a sunny day
+		{
+			//store that it is true and delete the foggy answers.
+		}
+	
+		else  											//user clicked false button -- it is foggy 
+		{
+			//delete all sunny answers.
+		}
+		next();
+	}
+	
+	else if (counter==2)
+	{
+		if (buttonNumber==1)							// the user clicked the true button -- yes they want a challenging hike
+		{
+			//store that it is true and delete the easy answers.
+		}
+	
+		else  											//user clicked false button -- they want an easy hike
+		{
+			//delete all challenging answers.
+		}
+		next();
+	}
+	
+	else 												//counter==3
+	{
+		if (buttonNumber==1)							// the user clicked the true button -- yes they want a long hike
+		{
+			//store that it is true and delete the short answers.
+		}
+	
+		else 											 //user clicked false button -- they want a short hike
+		{
+			//delete all long answers.
+		}
+		next();
+	}
 }
 
 function displayHike()
 {
-	document.getElementById("display").src = hikes[0][0];
+	//document.getElementById("display").src = hikes[1][0][0][0];
 }
 
 </script>
@@ -74,8 +103,7 @@ function displayHike()
 <center>
 <font color="white" face="Candara" size="30">
 <br/>
-Hike Help 
-
+Hike Help
 <br/>
 <div id="div1" style="position:absolute; top:200p; left:575; visibility:visible">
 <input type ="button" value="Click here to start" onclick="next()"/> 
