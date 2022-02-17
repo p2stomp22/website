@@ -7,15 +7,15 @@
 var questionList= [ "images/hike/opening.jfif",
 				"images/hike/1.jpg",
 				"images/hike/2.jpg",
-				"images/hike/3.jpg"]
+				"images/hike/3.jpg" ]
 
 var hikes= [ 	["images/hike/DoudPeakViaSoberanesCanyonTrail.jpg", "sunny", "long", "challenge"],
-				["images/hike/PointLobosLoopTrail.jpg", "sunny", "long", "easy"],
 				["images/hike/SoberanesCanyonTrail.jpg", "sunny", "short", "challenge"],
+				["images/hike/PointLobosLoopTrail.jpg", "sunny", "long", "easy"],
 				["images/hike/PointLobosSouthShoreTrail.jpg", "sunny", "short", "easy"],
 				["images/hike/PinyonPeak.jpg", "foggy", "long", "challenge"],
-				["images/hike/VTERTCTL.jpg", "foggy", "long", "easy"],
 				["images/hike/InspirationPoint.jpg", "foggy", "short", "challenge"],
+				["images/hike/VTERTCTL.jpg", "foggy", "long", "easy"],
 				["images/hike/RumsienOverlook.jpg", "foggy", "short", "easy"]	]
 
 counter=0;
@@ -26,7 +26,7 @@ function next()
 	
 	document.getElementById("div1").style.visibility ="hidden";
 	document.getElementById("div2").style.visibility ="visible";
-	
+	document.getElementById("div3").style.visibility ="hidden";
 	document.getElementById("display").src = questionList[counter];
 	
 	increment();
@@ -34,7 +34,7 @@ function next()
 
 function increment()
 {
-	if (counter == questionList.length-1)				//counter is the last element
+	if (counter == questionList.length)				//counter is the last element
 		{
 			counter = 0;
 			displayHike();
@@ -52,12 +52,12 @@ function checkHike(buttonNumber)
 	{
 		if (buttonNumber==1)							// the user clicked the true button -- yes it is a sunny day
 		{
-			//store that it is true and delete the foggy answers.
+			hikes.splice (4,4);
 		}
 	
 		else  											//user clicked false button -- it is foggy 
 		{
-			//delete all sunny answers.
+			hikes.splice (0,4);
 		}
 		next();
 	}
@@ -66,12 +66,12 @@ function checkHike(buttonNumber)
 	{
 		if (buttonNumber==1)							// the user clicked the true button -- yes they want a challenging hike
 		{
-			//store that it is true and delete the easy answers.
+			hikes.splice (3,2);
 		}
 	
 		else  											//user clicked false button -- they want an easy hike
 		{
-			//delete all challenging answers.
+			hikes.splice (0,2);
 		}
 		next();
 	}
@@ -80,12 +80,12 @@ function checkHike(buttonNumber)
 	{
 		if (buttonNumber==1)							// the user clicked the true button -- yes they want a long hike
 		{
-			//store that it is true and delete the short answers.
+			hikes.splice (1,1);
 		}
 	
 		else 											 //user clicked false button -- they want a short hike
 		{
-			//delete all long answers.
+			hikes.splice (0,1);
 		}
 		next();
 	}
@@ -93,7 +93,10 @@ function checkHike(buttonNumber)
 
 function displayHike()
 {
-	//document.getElementById("display").src = hikes[1][0][0][0];
+	document.getElementById("display").src = hikes[0][0];
+	document.getElementById("div2").style.visibility ="hidden";
+	document.getElementById("div3").style.visibility ="visible";
+	
 }
 
 </script>
@@ -114,6 +117,10 @@ Hike Help
 <div id="div2" style="position:absolute; top:900p; left:600; visibility:hidden">
 <input type ="button" value="Yes!" onclick="checkHike(1)" id="true"/>
 <input type ="button" value="No" onclick="checkHike(2)" id="false" />
+</div>
+<br/>
+<div id="div3" style="position:absolute; top:200p; left:600; visibility:hidden">
+<input type ="button" value="Try again" onclick="next()"/> 
 </div>
 <br/><br/>
 </font>
